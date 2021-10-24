@@ -1,17 +1,18 @@
 #this file builds and runs the files listed in SOURCE
-SOURCE = hello_world.cpp
-EXEC = hello_world
+SOURCE = src/life.cpp
+EXEC = build/life
 
 #Compiler and Directives
 CPP = g++
-CFLAGS = --std=c++20 $(SOURCE) -o $(EXEC) -Wall -pedantic #latest standard, show all warnings (strict)
+LFLAGS = -lSDL2 -lSDL2main #link the SDL libraries
+CFLAGS = $(SOURCE) --std=c++20 -Wall -pedantic $(LFLAGS) -o $(EXEC) #latest standard, show all warnings (strict)
 
 #Default rule
 all: $(EXEC)
 
 $(EXEC):
-	echo "compiling $(EXEC)"
-	$(CPP) $(CFLAGS)
+	echo "compiling $(SOURCE)"
+	$(CPP) $(CFLAGS) 
 
 #run the executable
 run: $(EXEC)
